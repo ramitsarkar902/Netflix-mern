@@ -56,7 +56,8 @@ router.delete("/:id", verify, async (req, res) => {
 //get
 router.get("/find/:id", verify, async (req, res) => {
   try {
-    res.send(200).json(await Movie.findById(req.params.id));
+    const movie = await Movie.findById(req.params.id);
+    res.status(200).json(movie);
   } catch (error) {
     res.status(500).json(error);
   }

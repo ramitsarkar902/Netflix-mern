@@ -14,38 +14,38 @@ import Login from "./pages/login/Login";
 function App() {
   return (
     <Router>
-      <div className="App">
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
         <Topbar />
         <div className="container">
           <Sidebar />
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/users">
-              <UserList />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/user/:userId">
-              <User />
-            </Route>
-            <Route path="/newUser">
-              <NewUser />
-            </Route>
-            <Route path="/products">
-              <ProductList />
-            </Route>
-            <Route path="/product/:productId">
-              <Product />
-            </Route>
-            <Route path="/newProduct">
-              <NewProduct />
-            </Route>
-          </Switch>
+
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/users">
+            <UserList />
+          </Route>
+
+          <Route path="/user/:userId">
+            <User />
+          </Route>
+          <Route path="/newUser">
+            <NewUser />
+          </Route>
+          <Route path="/products">
+            <ProductList />
+          </Route>
+          <Route path="/product/:productId">
+            <Product />
+          </Route>
+          <Route path="/newProduct">
+            <NewProduct />
+          </Route>
         </div>
-      </div>
+      </Switch>
     </Router>
   );
 }

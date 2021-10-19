@@ -22,7 +22,7 @@ function WidgetSmall() {
     };
     getUsers();
   }, []);
-  console.log(newUsers);
+
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">New Members</span>

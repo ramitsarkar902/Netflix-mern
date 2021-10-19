@@ -1,18 +1,13 @@
+import React, { useState } from "react";
 import "./login.css";
-import React, { useContext, useState } from "react";
-import { login } from "../../context/authContext/apiCalls";
-import { AuthContext } from "../../context/authContext/AuthContext";
-
-export default function Login() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isFetching, dispatch } = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login({ email, password }, dispatch);
+    //api calls login send data
   };
-
   return (
     <div className="login">
       <form className="loginForm">
@@ -22,20 +17,13 @@ export default function Login() {
           className="loginInput"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          type="password"
-          placeholder="password"
-          className="loginInput"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          className="loginButton"
-          onClick={handleLogin}
-          disabled={isFetching}
-        >
+
+        <button className="loginButton" onClick={handleLogin}>
           Login
         </button>
       </form>
     </div>
   );
 }
+
+export default Login;

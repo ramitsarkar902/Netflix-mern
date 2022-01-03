@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { login } from "../../context/authContext/apiCalls";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import "./login.css";
-function Login() {
+
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isFetching, dispatch } = useContext(AuthContext);
@@ -11,6 +12,7 @@ function Login() {
     e.preventDefault();
     login({ email, password }, dispatch);
   };
+
   return (
     <div className="login">
       <form className="loginForm">
@@ -26,7 +28,6 @@ function Login() {
           className="loginInput"
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <button
           className="loginButton"
           onClick={handleLogin}
@@ -38,5 +39,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

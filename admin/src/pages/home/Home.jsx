@@ -1,12 +1,13 @@
-import React from "react";
 import Chart from "../../components/chart/Chart";
-import { FeaturedInfo } from "../../components/featuredInfo/FeaturedInfo";
+import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
 import "./home.css";
-import WidgetLarge from "../../components/widgetLarge/WidgetLarge";
-import WidgetSmall from "../../components/widgetSmall/WidgetSmall";
-import { useState, useEffect, useMemo } from "react";
+import { userData } from "../../dummyData";
+import WidgetSm from "../../components/widgetSm/WidgetSm";
+import WidgetLg from "../../components/widgetLg/WidgetLg";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-function Home() {
+
+export default function Home() {
   const MONTHS = useMemo(
     () => [
       "Jan",
@@ -16,7 +17,7 @@ function Home() {
       "May",
       "Jun",
       "Jul",
-      "Aug",
+      "Agu",
       "Sep",
       "Oct",
       "Nov",
@@ -33,17 +34,20 @@ function Home() {
         const res = await axios.get("/users/stats", {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDJlYmVhMzJiMGQxOGE4OTk2NDQ4NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNDE4MTI0MiwiZXhwIjoxNjM0NjEzMjQyfQ.6LCv9-lkPgpCVV97Q8BTzHpMM9l-B9zHFGbiEr7Gkyo",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTZmYzQ2NDk0Mjc3MTYwNDg4MmMxNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNTgzMjMxMSwiZXhwIjoxNjI2MjY0MzExfQ.ATXV-1TTWIGyVBttTQSf0erRWjsgZ8jHQv1ZsUixbng",
           },
         });
-        res.data.map((item) =>
+        const statsList = res.data.sort(function (a, b) {
+          return a._id - b._id;
+        });
+        statsList.map((item) =>
           setUserStats((prev) => [
             ...prev,
-            { name: MONTHS[item._id - 1], "New Users": item.total },
+            { name: MONTHS[item._id - 1], "New User": item.total },
           ])
         );
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     };
     getStats();
@@ -52,13 +56,11 @@ function Home() {
   return (
     <div className="home">
       <FeaturedInfo />
-      <Chart data={userStats} title="User Analytics" grid dataKey="New Users" />
-      <div className="widgetHome">
-        <WidgetSmall />
-        <WidgetLarge />
+      <Chart data={userStats} title="User Analytics" grid dataKey="New User" />
+      <div className="homeWidgets">
+        <WidgetSm />
+        <WidgetLg />
       </div>
     </div>
   );
 }
-
-export default Home;

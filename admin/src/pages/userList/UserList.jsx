@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "./userList.css";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../data";
+import { userRows } from "../../dummyData";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-function UserList() {
+export default function UserList() {
   const [data, setData] = useState(userRows);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
+  
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
       field: "user",
-      headerName: "User ",
+      headerName: "User",
       width: 200,
-      editable: true,
       renderCell: (params) => {
         return (
           <div className="userListUser">
@@ -27,46 +27,17 @@ function UserList() {
         );
       },
     },
-    {
-      field: "email",
-      headerName: "Email",
-      width: 200,
-      editable: true,
-    },
+    { field: "email", headerName: "Email", width: 200 },
     {
       field: "status",
       headerName: "Status",
-      type: "number",
       width: 120,
-      editable: true,
-      renderCell: (params) => {
-        return (
-          <>
-            {params.row.status === "active" ? (
-              <img
-                className="status"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Check_icon.svg/120px-Check_icon.svg.png"
-                alt="active"
-              ></img>
-            ) : (
-              <img
-                className="status"
-                src="https://icon-library.com/images/inactive-icon/inactive-icon-8.jpg"
-                alt="inactive"
-              ></img>
-            )}
-          </>
-        );
-      },
     },
     {
       field: "transaction",
-      headerName: "Transaction",
-      type: "number",
+      headerName: "Transaction Volume",
       width: 160,
-      editable: true,
     },
-
     {
       field: "action",
       headerName: "Action",
@@ -74,15 +45,13 @@ function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <div className="userListAction">
-              <Link to={"/user/" + params.row.id}>
-                <button className="userListEdit">Edit</button>
-              </Link>
-              <DeleteOutline
-                className="userListDelete"
-                onClick={() => handleDelete(params.row.id)}
-              />
-            </div>
+            <Link to={"/user/" + params.row.id}>
+              <button className="userListEdit">Edit</button>
+            </Link>
+            <DeleteOutline
+              className="userListDelete"
+              onClick={() => handleDelete(params.row.id)}
+            />
           </>
         );
       },
@@ -93,14 +62,11 @@ function UserList() {
     <div className="userList">
       <DataGrid
         rows={data}
+        disableSelectionOnClick
         columns={columns}
         pageSize={8}
-        rowsPerPageOptions={[8]}
         checkboxSelection
-        disableSelectionOnClick
       />
     </div>
   );
 }
-
-export default UserList;

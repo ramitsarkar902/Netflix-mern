@@ -1,21 +1,21 @@
-import React from "react";
 import "./newUser.css";
-function NewUser() {
+
+export default function NewUser() {
   return (
-    <div className="index">
-      <h1>New User</h1>
-      <form className="newUserForm" action="">
+    <div className="newUser">
+      <h1 className="newUserTitle">New User</h1>
+      <form className="newUserForm">
         <div className="newUserItem">
           <label>Username</label>
-          <input type="text" placeholder="scarlett" />
+          <input type="text" placeholder="john" />
         </div>
         <div className="newUserItem">
           <label>Full Name</label>
-          <input type="text" placeholder="Scarlett Johansson" />
+          <input type="text" placeholder="John Smith" />
         </div>
         <div className="newUserItem">
           <label>Email</label>
-          <input type="email" placeholder="scarlett@gmail.com" />
+          <input type="email" placeholder="john@gmail.com" />
         </div>
         <div className="newUserItem">
           <label>Password</label>
@@ -52,5 +52,3 @@ function NewUser() {
     </div>
   );
 }
-
-export default NewUser;

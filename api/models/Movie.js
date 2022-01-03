@@ -18,15 +18,3 @@ const MovieSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Movie", MovieSchema);
-
-/* "title":
-"desc": ,
-    "img": ,
-    "imgTitle": ,
-    "imgSm":,
-    "trailer": ,
-    "video": ,
-    "year": ,
-    "limit": ,
-    "genre": ,
-    "isSeries" */

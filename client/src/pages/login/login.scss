@@ -45,29 +45,15 @@
       flex-direction: column;
       justify-content: space-around;
 
-      .header {
-        display: flex;
-        justify-content: space-between;
-      }
-
       input {
         height: 40px;
         border-radius: 5px;
         background-color: gray;
         color: white;
         padding-left: 10px;
-        transition: 0.2s all ease-out;
 
         &::placeholder {
           color: lightgray;
-        }
-
-        &:hover {
-          background-color: white;
-
-          &::placeholder {
-            color: grey;
-          }
         }
       }
 
@@ -80,11 +66,6 @@
         font-size: 18px;
         font-weight: 500;
         cursor: pointer;
-        transition: 0.2s all ease-in-out;
-
-        &:hover {
-          background-color: green;
-        }
       }
 
       span {

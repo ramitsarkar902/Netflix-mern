@@ -1,27 +1,27 @@
-import React from "react";
 import "./sidebar.css";
 import {
   LineStyle,
   Timeline,
   TrendingUp,
   PermIdentity,
-  Storefront,
-  AttachMoney,
-  BarChart,
+  PlayCircleOutline,
+  List,
   MailOutline,
   DynamicFeed,
   ChatBubbleOutline,
   WorkOutline,
   Report,
+  AddToQueue,
+  QueuePlayNext,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-        <div className="sidebarContainer">
-          <h3 className="sidebarTitle">DashBoard</h3>
+        <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
               <li className="sidebarListItem active">
@@ -29,7 +29,6 @@ const Sidebar = () => {
                 Home
               </li>
             </Link>
-
             <li className="sidebarListItem">
               <Timeline className="sidebarIcon" />
               Analytics
@@ -40,7 +39,7 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-        <div className="sidebarContainer">
+        <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
             <Link to="/users" className="link">
@@ -49,23 +48,33 @@ const Sidebar = () => {
                 Users
               </li>
             </Link>
-            <Link to="/products" className="link">
+            <Link to="/movies" className="link">
               <li className="sidebarListItem">
-                <Storefront className="sidebarIcon" />
-                Products
+                <PlayCircleOutline className="sidebarIcon" />
+                Movies
               </li>
             </Link>
-            <li className="sidebarListItem">
-              <AttachMoney className="sidebarIcon" />
-              Transactions
-            </li>
-            <li className="sidebarListItem">
-              <BarChart className="sidebarIcon" />
-              Reports
-            </li>
+            <Link to="/lists" className="link">
+              <li className="sidebarListItem">
+                <List className="sidebarIcon" />
+                Lists
+              </li>
+            </Link>
+            <Link to="/newMovie" className="link">
+              <li className="sidebarListItem">
+                <AddToQueue className="sidebarIcon" />
+                Add Movie
+              </li>
+            </Link>
+            <Link to="/newList" className="link">
+              <li className="sidebarListItem">
+                <QueuePlayNext className="sidebarIcon" />
+                Add List
+              </li>
+            </Link>
           </ul>
         </div>
-        <div className="sidebarContainer">
+        <div className="sidebarMenu">
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
@@ -82,7 +91,7 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-        <div className="sidebarContainer">
+        <div className="sidebarMenu">
           <h3 className="sidebarTitle">Staff</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
@@ -102,6 +111,4 @@ const Sidebar = () => {
       </div>
     </div>
   );
-};
-
-export default Sidebar;
+}
